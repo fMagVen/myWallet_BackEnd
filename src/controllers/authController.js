@@ -12,6 +12,11 @@ export async function postSignup(req, res){
     const hashedPassword = bcrypt.hashSync(req.body.password, parseInt(process.env.MAGIC_HASH_NUMBER))
 
     try{
+        const user = await db.collection("users").findOne({email: req.body.email})
+        if(user){
+            res.sendStatus(409)
+            return
+        }
         await db.collection("users").insertOne({ ...req.body, password: hashedPassword })
         res.sendStatus(201)
     }
