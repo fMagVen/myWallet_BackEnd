@@ -11,5 +11,5 @@ app.use(json())
 app.use(router)
 
 app.listen(parseInt(process.env.PORT_NUMBER), () =>{
-    console.log(`app listening on ${process.env.SERVER_URI}:${process.env.PORT_NUMBER}`)
+    console.log(`app listening on ${process.env.SERVER_URI}`)
 })
